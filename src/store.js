@@ -2,7 +2,7 @@ export default class Store {
   constructor(reducer) {
     this.reducer = reducer;
     this.listeners = [];
-    this.state = [];
+    this.state = [{}];
     this.dispatch({name:'INIT'});
   }
 
@@ -11,7 +11,8 @@ export default class Store {
   }
 
   dispatch(action) {
-    this.state.push(this.reducer(this.state, action));
+    this.state.push(this.reducer(this.getState(), action));
+    this.listeners.forEach((listener) => listener());
   }
 
   subscribe(listener) {
