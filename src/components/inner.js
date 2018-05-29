@@ -1,8 +1,8 @@
 import {p} from './dom';
-import {view} from './../View';
+//import store from './../store';
 
-export default view((store) => {
+export default (store) => {
   const counter = store.getState().counterState.counter;
   return p(`Counter: ${counter}`);
-});
+};
 
